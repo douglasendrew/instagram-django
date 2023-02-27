@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% include "base/includes.html" %}
+    <title>Instagram | {% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    <div id="overlay">
+        <div class="cv-spinner">
+            <i class="fa fa-instagram insta" aria-hidden="true" style="font-size: 100px;"></i>
+
+            <div class="fixed-bottom text-center mb-2">
+                from  <br>
+                <div class="insta" style="font-size: 30px;">
+                    <i class="fa-brands fa-meta insta" aria-hidden="true"></i>
+                    <span class="insta">Meta</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                {% load static %}
+                <img src="{% static 'images/instagram_logo.png' %}" alt="Logo"  width="150" class="d-inline-block align-text-top">
+            </a>
+            <div class="d-flex">
+                <a href="/logout/" class="text-decoration-none text-dark" style="margin-right: 5px;">Sair</a>
+                |
+                <a href="#" class="text-decoration-none text-dark" style="margin-left: 5px;">Perfil</a>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %} {% endblock %}
+    {% include "base/footer.html" %}
+
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#overlay").fadeOut(200);
+                setTimeout(function() {
+                    $("body").css("overflow", "auto");
+                }, 50);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

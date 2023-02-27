@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    {% load static %}
+    <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/instagram.css' %}" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <title>Instagram | Cadastrar</title>
+</head>
+<body>
+    <div class="mt-5 container">
+        <div class="row">
+            <div class="col-md-6 text-end">
+                <img src="{% static 'images/home-phones.png' %}" alt="">
+            </div>
+
+            <div class="col-md-6">
+                <div class="container">
+
+                    <div class="mt-2" style="max-width: 400px;">
+                        {% for message in messages %}
+                            <div class="alert alert-danger mt-2" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="card border rounded-0" style="max-width: 400px;">
+                        <div class="card-body text-center">
+                            <img src="{% static 'images/instagram_logo.png' %}" alt="Logo" width="200"
+                                class="mt-4">
+        
+                            <form action="/new-account/" method="post">
+                                {% csrf_token %} 
+                                <div class="mt-4">
+                                    <input type="text" name="nome" id="" class="form-control"
+                                        placeholder="Nome" required>
+                                </div>
+            
+                                    
+                                <div class="mt-4">
+                                    <input type="email" name="email" id="" class="form-control"
+                                        placeholder="Email" required>
+                                </div>
+            
+                                <div class="mt-4 text-start text-left">
+                                    <input type="password" name="senha" id="" class="form-control senha"
+                                        placeholder="Senha" required>
+            
+                                    <a href="#" style="font-size: 12px;"
+                                        class="show-pass text-decoration-none">Mostrar Senha</a>
+                                </div>
+            
+                                <div class="mt-4">
+                                    <input type="password" name="" id="" class="form-control senha"
+                                        placeholder="Confirme sua Senha" required>
+                                </div>
+
+                                <button class="btn btn-prymary-instagram w-100 mt-3
+                                    mb-5">Cadastrar</button>
+
+                            </form>
+                        </div>
+                    </div>
+    
+                    <div class="card border rounded-0 mt-5" style="max-width: 400px;">
+                        <div class="card-body text-center">
+                            <div
+                                style="font-size: 14px;">Já tem uma conta? 
+                                    <a href="/login/" class="text-decoration-none"><b>Entrar</b></a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $('.show-pass').click(function() {
+            if($('.senha').attr('type') == "password") {
+                $('.senha').attr("type", "text");
+                $(this).text('Ocultar Senha');
+            }else {
+                $('.senha').attr("type", "password");
+                $(this).text('Mostar Senha');
+            }
+        });
+    </script>
+</body>
+</html>
